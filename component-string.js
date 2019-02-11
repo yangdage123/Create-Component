@@ -2,22 +2,37 @@ const { fileUrl } = require('./config');
 
 const viewString = `import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Spin } from 'antd';
 import { connect } from 'react-redux';
+import { init } from './action';
 
 class Container extends Component {
+   
+  componentDidMount() {
+    this.props.dispatch(init(this.props));
+  }
+
   render() {
     const {
       ready,
     } = this.props;
+    if (ready) {
+      return (
+        <div>
+          <Header {...this.props} />
+        </div>
+      );
+    }
     return (
-      <div>
-        <Header {...this.props} />
+      <div style={{ textAlign: 'center' }}>
+        <Spin size="large" />
       </div>
     );
   }
 }
 
 Container.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 const stateToProps = state => state['${fileUrl}'];
