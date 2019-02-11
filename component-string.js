@@ -1,5 +1,4 @@
-const config = require('./config');
-const { fileUrl } = config
+const { fileUrl } = require('./config');
 
 const viewString = `import React, { Component } from 'react';
 import PropTypes from 'prop-types';
