@@ -4,11 +4,12 @@ const viewString = `import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 import { connect } from 'react-redux';
+import $ from 'jquery';
 import { init } from './action';
 import styles from '../../../style.css';
 import Header from './jsx/header';
 
-class Container extends Component { 
+class Container extends Component {
   componentDidMount() {
     this.props.dispatch(init(this.props));
     this.onresize = () => requestAnimationFrame(() => this.forceUpdate());
@@ -22,9 +23,9 @@ class Container extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.onresize);
   }
-  
+
   updateHeaderHeight() {
-    const h = document.querySelector(${'`.${'}${headerClass}${'}`'}).innerHeight;
+    const h = $(${'`.${'}${headerClass}${'}`'}).innerHeight;
     if (h && h !== this.headerHeight) {
       this.headerHeight = h;
       this.forceUpdate();
@@ -63,7 +64,7 @@ import * as types from './types';
 import { changeData } from './action';
 
 function* init(action) {
-   yield put(changeData({ ready: true }));
+  yield put(changeData({ ready: true }));
 }
 
 function* main() {
@@ -117,26 +118,7 @@ const meString = `{
 }
 `;
 
-const headerString = `import React from 'react';
-import PropTypes from 'prop-types';
-
-const Header = (props) => {
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-    >
-      
-    </form>
-  )
-};
-
-Header.propTypes = {
-
-};
-export default Header;
-`;
+const { headerString } = require('./handle-header-string');
 
 const listString = `import React from 'react';
 import PropTypes from 'prop-types';
