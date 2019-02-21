@@ -8,5 +8,18 @@ module.exports = {
       type: 'Input',
       bind: 'a',
     }
-  ]
+  ],
+  list: {
+    columns: [
+      {
+        title: '',
+        dataIndex: '',
+      },
+
+      {
+        title: '',
+        dataIndex: '',
+      }
+    ],
+  }
 };

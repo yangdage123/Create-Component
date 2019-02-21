@@ -120,68 +120,7 @@ const meString = `{
 
 const { headerString } = require('./handle-header-string');
 
-const listString = `import React from 'react';
-import PropTypes from 'prop-types';
-import { Pagination, Table } from 'antd';
-import styles from '../../../../style.css';
-import { getSize } from '../../../../../middlewares/pagesize';
-import { changeLimit } from '../action';
-
-const List = (props) => {
-  const {
-    dispatch,
-    dataLoading,
-    list,
-    limit: {
-      pageNum,
-    },
-    pageSizeOptions,
-    count,
-  } = props;
-  const columns = [];
-  const handlePaginationChange = (page, size) => {
-    dispatch(changeLimit({
-      pageNum: page,
-      pageSize: size,
-    }));
-  };
-
-  return (
-    <div className={styles.listBox}>
-      <Table
-        bordered
-        loading={dataLoading}
-        dataSource={list}
-        columns={columns}
-        pagination={false}
-      />
-      <Pagination
-        className={styles.rightDown}
-        showQuickJumper
-        showSizeChanger
-        current={pageNum}
-        pageSizeOptions={pageSizeOptions}
-        pageSize={parseInt(getSize(), 10)}
-        total={count}
-        showTotal={v => ${'`共${v}条`'}}
-        onChange={handlePaginationChange}
-        onShowSizeChange={handlePaginationChange}
-      />
-    </div>
-  );
-};
-
-List.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  dataLoading: PropTypes.bool.isRequired,
-  list: PropTypes.arrayOf(PropTypes.shape).isRequired,
-  limit: PropTypes.shape.isRequired,
-  pageSizeOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
-  count: PropTypes.number.isRequired,
-};
-
-export default List;
-`;
+const { listString } = require('./handle-list-string');
 
 
 module.exports = {
