@@ -59,21 +59,6 @@ const stateToProps = state => state['${fileUrl}'];
 export default connect(stateToProps)(Container);
 `;
 
-const sagaString = `import { takeLatest, put } from 'redux-saga/effects';
-import * as types from './types';
-import { changeData } from './action';
-
-function* init(action) {
-  yield put(changeData({ ready: true }));
-}
-
-function* main() {
-  yield takeLatest(types.init, init);
-}
-
-export default main;
-`;
-
 const typesString = `export let init;
 export let changeData;
 `;
@@ -121,6 +106,8 @@ const meString = `{
 const { headerString } = require('./handle-header-string');
 
 const { listString } = require('./handle-list-string');
+
+const { sagaString } = require('./handle-saga-string');
 
 
 module.exports = {
